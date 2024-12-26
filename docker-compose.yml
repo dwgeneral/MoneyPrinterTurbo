@@ -6,7 +6,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: "webui"
+    container_name: "text2video-webui"
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.30'
+    #       memory: 5000M
     ports:
       - "8501:8501"
     command: [ "streamlit", "run", "./webui/Main.py","--browser.serverAddress=127.0.0.1","--server.enableCORS=True","--browser.gatherUsageStats=False" ]
@@ -16,9 +21,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: "api"
+    container_name: "text2video-api"
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.50'
+    #       memory: 5000M
     ports:
-      - "8080:8080"
+      - "8502:8502"
     command: [ "python3", "main.py" ]
     volumes: *common-volumes
     restart: always
+
+# $ docker-compose --compatibility up -d

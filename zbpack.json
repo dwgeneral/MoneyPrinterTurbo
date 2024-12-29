@@ -1,0 +1,5 @@
+{
+    "streamlit": {
+        "entry": "webui/Main.py"
+    }
+}
